@@ -1,3 +1,45 @@
+/* =========================================================
+   1. ESTILOS GENERALES Y RESET
+   ========================================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+.text-justificado {
+    text-align: justify;
+}
+
+/* =========================================================
+   2. ESTILOS PARA EL HEADER (CABECERA)
+   ========================================================= */
+.custom-header {
+    background: linear-gradient(135deg, #0d47a1, #1976d2);
+    color: white;
+    padding: 1.5rem 0;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.custom-header h1 {
+    font-weight: 700;
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+    margin-bottom: 0.25rem;
+}
+
+.custom-header .lead {
+    font-weight: 300;
+    font-size: 1.1rem;
+}
 
 /* =========================================================
    3. ESTILOS PARA EL NAVBAR
@@ -8,7 +50,18 @@
 
 .navbar-brand {
     font-weight: 700;
-    color: #41669e !important;
+    color: #0d47a1 !important;
+}
+
+.navbar-nav .nav-link {
+    color: #333 !important;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+    color: #0d47a1 !important;
 }
 
 /* =========================================================
@@ -43,23 +96,84 @@
 
 .btn-danger {
     border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.btn-danger:hover {
+    transform: scale(1.05);
 }
 
 /* =========================================================
-   5. ESTILOS PARA LA LISTA DE SOLICITUDES
+   5. ESTILOS PARA FORMULARIOS - VALIDACIONES DINÁMICAS
+   ========================================================= */
+
+/* Estilos para mensajes de feedback */
+.invalid-feedback,
+.valid-feedback {
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+.invalid-feedback {
+    color: #dc3545;
+}
+
+.valid-feedback {
+    color: #198754;
+}
+
+/* Estilos para campos con validación */
+.form-control.is-valid,
+.form-select.is-valid {
+    border-color: #198754;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23198754' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right calc(0.375em + 0.1875rem) center;
+    background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+}
+
+.form-control.is-invalid,
+.form-select.is-invalid {
+    border-color: #dc3545;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right calc(0.375em + 0.1875rem) center;
+    background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+}
+
+/* Contador de caracteres */
+#descripcionContador {
+    font-size: 0.8rem;
+    color: #6c757d;
+    transition: color 0.3s ease;
+}
+
+#descripcionContador.text-danger {
+    color: #dc3545 !important;
+}
+
+/* =========================================================
+   6. ESTILOS PARA LA LISTA DE SOLICITUDES
    ========================================================= */
 .solicitud-item {
     transition: all 0.3s ease;
     border-left: 4px solid #0d47a1;
     margin-bottom: 8px;
+    border-radius: 8px;
 }
 
 .solicitud-item:hover {
     background-color: #f0f7ff;
+    transform: translateX(4px);
+}
+
+.solicitud-item .badge {
+    font-size: 0.75rem;
+    padding: 0.35rem 0.65rem;
 }
 
 /* =========================================================
-   6. ESTILOS PARA IMÁGENES
+   7. ESTILOS PARA IMÁGENES
    ========================================================= */
 .img-fluid {
     border-radius: 15px;
@@ -67,9 +181,250 @@
 }
 
 /* =========================================================
-   7. ESTILOS PARA EL ASIDE
+   8. ESTILOS PARA EL ASIDE
    ========================================================= */
 .custom-aside {
-    background-color: #e3f2fd;
+    background: linear-gradient(135deg, #e3f2fd, #bbdefb);
     border-left: 8px solid #0d47a1;
-    border-radius
+    border-radius: 10px;
+    padding: 1.5rem 2rem;
+    margin: 2rem 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.custom-aside h3 {
+    color: #0d47a1;
+    margin-bottom: 1rem;
+}
+
+.custom-aside p {
+    margin-bottom: 0.5rem;
+}
+
+/* =========================================================
+   9. ESTILOS PARA EL FOOTER
+   ========================================================= */
+.custom-footer {
+    background: linear-gradient(135deg, #0d47a1, #1976d2);
+    color: white;
+    text-align: center;
+    padding: 1.5rem 0;
+    margin-top: 2rem;
+}
+
+.custom-footer p {
+    margin: 0;
+    font-weight: 300;
+}
+
+/* =========================================================
+   10. ESTILOS PARA SECCIONES
+   ========================================================= */
+section {
+    scroll-margin-top: 80px;
+}
+
+section h2 {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 0.5rem;
+}
+
+section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 3px;
+    background: linear-gradient(to right, #0d47a1, #1976d2);
+    border-radius: 2px;
+}
+
+/* =========================================================
+   11. ESTILOS PARA MENSAJES DE VALIDACIÓN GLOBALES
+   ========================================================= */
+#mensajeValidacion {
+    transition: all 0.3s ease;
+}
+
+#mensajeValidacion .alert {
+    border-radius: 10px;
+    padding: 0.75rem 1.25rem;
+}
+
+#mensajeValidacion .alert ul {
+    margin-top: 0.5rem;
+    padding-left: 1.5rem;
+}
+
+/* =========================================================
+   12. ESTILOS PARA EL CONTENEDOR DE LA LISTA
+   ========================================================= */
+.list-group-item {
+    border-radius: 8px !important;
+    transition: all 0.3s ease;
+}
+
+/* =========================================================
+   13. ANIMACIONES
+   ========================================================= */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.solicitud-item {
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* =========================================================
+   14. RESPONSIVE DESIGN
+   ========================================================= */
+
+/* Tablets y dispositivos medianos */
+@media (max-width: 768px) {
+    .custom-header h1 {
+        font-size: 2rem;
+    }
+    
+    .custom-header .lead {
+        font-size: 0.95rem;
+    }
+    
+    .btn-primary {
+        padding: 0.5rem 1.2rem;
+        font-size: 0.9rem;
+    }
+    
+    .card:hover {
+        transform: translateY(-4px);
+    }
+    
+    section h2 {
+        font-size: 1.5rem;
+    }
+}
+
+/* Teléfonos móviles */
+@media (max-width: 576px) {
+    .custom-header h1 {
+        font-size: 1.6rem;
+    }
+    
+    .custom-header .lead {
+        font-size: 0.85rem;
+    }
+    
+    .custom-aside {
+        padding: 1rem;
+        margin: 1rem 0;
+    }
+    
+    .solicitud-item {
+        padding: 0.75rem;
+    }
+    
+    .solicitud-item .badge {
+        font-size: 0.65rem;
+        padding: 0.25rem 0.5rem;
+    }
+    
+    .btn-primary {
+        padding: 0.4rem 1rem;
+        font-size: 0.85rem;
+        border-radius: 20px;
+    }
+    
+    #descripcionContador {
+        font-size: 0.7rem;
+    }
+    
+    .custom-footer p {
+        font-size: 0.8rem;
+    }
+}
+
+/* =========================================================
+   15. ESTILOS ADICIONALES PARA MEJORAR LA EXPERIENCIA
+   ========================================================= */
+
+/* Sombra suave en los contenedores */
+.shadow-sm {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06) !important;
+}
+
+/* Transición suave para campos de formulario */
+.form-control,
+.form-select {
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #1976d2;
+    box-shadow: 0 0 0 0.25rem rgba(25, 118, 210, 0.25);
+}
+
+/* Estilo para el contenedor del formulario en dispositivos móviles */
+@media (max-width: 576px) {
+    .p-4 {
+        padding: 1rem !important;
+    }
+    
+    .bg-white.rounded.shadow-sm {
+        border-radius: 10px !important;
+    }
+}
+
+/* Scroll suave para toda la página */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Estilos para el botón de enviar cuando está deshabilitado */
+.btn-primary:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+/* Mejora visual para el contador de solicitudes */
+.badge.bg-primary.fs-6 {
+    font-size: 1rem !important;
+    padding: 0.5rem 1rem;
+}
+/* =========================================================
+   16. ESTILOS PARA EL FORMULARIO DE CONTACTO
+   ========================================================= */
+
+#contactoMensajeContador {
+    font-size: 0.8rem;
+    color: #6c757d;
+    transition: color 0.3s ease;
+}
+
+#contactoMensajeContador.text-danger {
+    color: #dc3545 !important;
+}
+
+/* Estilos para los mensajes de validación del contacto */
+#mensajeValidacionContacto {
+    transition: all 0.3s ease;
+}
+
+#mensajeValidacionContacto .alert {
+    border-radius: 10px;
+    padding: 0.75rem 1.25rem;
+}
+
+#mensajeValidacionContacto .alert ul {
+    margin-top: 0.5rem;
+    padding-left: 1.5rem;
+}

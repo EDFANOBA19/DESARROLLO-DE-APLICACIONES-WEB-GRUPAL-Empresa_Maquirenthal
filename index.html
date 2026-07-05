@@ -208,11 +208,11 @@
                     <div class="p-4 bg-white rounded shadow-sm">
                         <h3 class="h5 mb-3">📝 Nueva Solicitud</h3>
                         
-                        <!-- Contenedor para mensajes de validación -->
+                        <!-- Contenedor para mensajes de validación globales -->
                         <div id="mensajeValidacion"></div>
                         
                         <!-- FORMULARIO -->
-                        <form id="solicitudForm">
+                        <form id="solicitudForm" novalidate>
                             <!-- Campo: Nombre -->
                             <div class="mb-3">
                                 <label for="solicitudNombre" class="form-label">Nombre completo *</label>
@@ -221,8 +221,17 @@
                                     class="form-control" 
                                     id="solicitudNombre" 
                                     placeholder="Ingrese su nombre completo"
+                                    minlength="3"
+                                    maxlength="50"
                                 >
-                                <div class="invalid-feedback">Por favor ingrese su nombre completo</div>
+                                <!-- Mensaje de error dinámico para Nombre -->
+                                <div class="invalid-feedback" id="nombreFeedback">
+                                    El nombre debe tener al menos 3 caracteres
+                                </div>
+                                <!-- Mensaje de éxito dinámico -->
+                                <div class="valid-feedback" id="nombreFeedbackSuccess">
+                                    ✅ Nombre válido
+                                </div>
                             </div>
                             
                             <!-- Campo: Correo -->
@@ -234,7 +243,14 @@
                                     id="solicitudEmail" 
                                     placeholder="ejemplo@correo.com"
                                 >
-                                <div class="invalid-feedback">Ingrese un correo electrónico válido</div>
+                                <!-- Mensaje de error dinámico para Email -->
+                                <div class="invalid-feedback" id="emailFeedback">
+                                    Ingrese un correo electrónico válido (ejemplo@dominio.com)
+                                </div>
+                                <!-- Mensaje de éxito dinámico -->
+                                <div class="valid-feedback" id="emailFeedbackSuccess">
+                                    ✅ Correo válido
+                                </div>
                             </div>
                             
                             <!-- Campo: Categoría / Tipo -->
@@ -250,7 +266,14 @@
                                     <option value="Mantenimiento Preventivo">🔄 Mantenimiento Preventivo</option>
                                     <option value="Otro">📌 Otro</option>
                                 </select>
-                                <div class="invalid-feedback">Seleccione una categoría</div>
+                                <!-- Mensaje de error dinámico para Categoría -->
+                                <div class="invalid-feedback" id="categoriaFeedback">
+                                    Por favor seleccione una categoría
+                                </div>
+                                <!-- Mensaje de éxito dinámico -->
+                                <div class="valid-feedback" id="categoriaFeedbackSuccess">
+                                    ✅ Categoría seleccionada
+                                </div>
                             </div>
                             
                             <!-- Campo: Descripción -->
@@ -261,12 +284,25 @@
                                     id="solicitudDescripcion" 
                                     rows="3" 
                                     placeholder="Describa brevemente su requerimiento (mín. 10 caracteres)"
+                                    minlength="10"
+                                    maxlength="500"
                                 ></textarea>
-                                <div class="invalid-feedback">La descripción debe tener al menos 10 caracteres</div>
+                                <!-- Mensaje de error dinámico para Descripción -->
+                                <div class="invalid-feedback" id="descripcionFeedback">
+                                    La descripción debe tener al menos 10 caracteres
+                                </div>
+                                <!-- Mensaje de éxito dinámico -->
+                                <div class="valid-feedback" id="descripcionFeedbackSuccess">
+                                    ✅ Descripción válida
+                                </div>
+                                <!-- Contador de caracteres -->
+                                <div id="descripcionContador" class="text-muted small mt-1">
+                                    <span id="caracteresActuales">0</span> / 500 caracteres
+                                </div>
                             </div>
                             
                             <!-- Botón Submit -->
-                            <button type="submit" class="btn btn-primary w-100">
+                            <button type="submit" class="btn btn-primary w-100" id="btnEnviarSolicitud">
                                 📤 Enviar Solicitud
                             </button>
                         </form>
@@ -298,7 +334,7 @@
             </div>
         </section>
 
-        <!-- ===== SECCIÓN CONTACTO ===== -->
+                <!-- ===== SECCIÓN CONTACTO ===== -->
         <section id="contacto" class="mb-5">
             <h2 class="text-primary text-center mb-4">Contacto</h2>
             <div class="row g-4">
@@ -331,24 +367,88 @@
                 <div class="col-md-7">
                     <div class="p-4 bg-white rounded shadow-sm h-100">
                         <h3>Envíanos un Mensaje</h3>
-                        <form id="formularioContacto">
+                        
+                        <!-- Contenedor para mensajes de validación del contacto -->
+                        <div id="mensajeValidacionContacto"></div>
+                        
+                        <form id="formularioContacto" novalidate>
                             <div class="mb-3">
-                                <label for="nombre" class="form-label">Nombre completo</label>
-                                <input type="text" class="form-control" id="nombre" placeholder="Tu nombre" />
+                                <label for="contactoNombre" class="form-label">Nombre completo *</label>
+                                <input 
+                                    type="text" 
+                                    class="form-control" 
+                                    id="contactoNombre" 
+                                    placeholder="Tu nombre completo"
+                                    minlength="3"
+                                    maxlength="50"
+                                />
+                                <div class="invalid-feedback" id="contactoNombreFeedback">
+                                    El nombre debe tener al menos 3 caracteres
+                                </div>
+                                <div class="valid-feedback" id="contactoNombreFeedbackSuccess">
+                                    ✅ Nombre válido
+                                </div>
                             </div>
+                            
                             <div class="mb-3">
-                                <label for="email" class="form-label">Correo electrónico</label>
-                                <input type="email" class="form-control" id="email" placeholder="nombre@ejemplo.com" />
+                                <label for="contactoEmail" class="form-label">Correo electrónico *</label>
+                                <input 
+                                    type="email" 
+                                    class="form-control" 
+                                    id="contactoEmail" 
+                                    placeholder="nombre@ejemplo.com"
+                                />
+                                <div class="invalid-feedback" id="contactoEmailFeedback">
+                                    Ingrese un correo electrónico válido (ejemplo@dominio.com)
+                                </div>
+                                <div class="valid-feedback" id="contactoEmailFeedbackSuccess">
+                                    ✅ Correo válido
+                                </div>
                             </div>
+                            
                             <div class="mb-3">
-                                <label for="asunto" class="form-label">Asunto</label>
-                                <input type="text" class="form-control" id="asunto" placeholder="Motivo de tu consulta" />
+                                <label for="contactoAsunto" class="form-label">Asunto *</label>
+                                <input 
+                                    type="text" 
+                                    class="form-control" 
+                                    id="contactoAsunto" 
+                                    placeholder="Motivo de tu consulta"
+                                    minlength="5"
+                                    maxlength="100"
+                                />
+                                <div class="invalid-feedback" id="contactoAsuntoFeedback">
+                                    El asunto debe tener al menos 5 caracteres
+                                </div>
+                                <div class="valid-feedback" id="contactoAsuntoFeedbackSuccess">
+                                    ✅ Asunto válido
+                                </div>
                             </div>
+                            
                             <div class="mb-3">
-                                <label for="mensaje" class="form-label">Mensaje</label>
-                                <textarea class="form-control" id="mensaje" rows="4" placeholder="Escribe tu mensaje aquí..."></textarea>
+                                <label for="contactoMensaje" class="form-label">Mensaje *</label>
+                                <textarea 
+                                    class="form-control" 
+                                    id="contactoMensaje" 
+                                    rows="4" 
+                                    placeholder="Escribe tu mensaje aquí (mín. 10 caracteres)"
+                                    minlength="10"
+                                    maxlength="500"
+                                ></textarea>
+                                <div class="invalid-feedback" id="contactoMensajeFeedback">
+                                    El mensaje debe tener al menos 10 caracteres
+                                </div>
+                                <div class="valid-feedback" id="contactoMensajeFeedbackSuccess">
+                                    ✅ Mensaje válido
+                                </div>
+                                <!-- Contador de caracteres para mensaje -->
+                                <div id="contactoMensajeContador" class="text-muted small mt-1">
+                                    <span id="contactoCaracteresActuales">0</span> / 500 caracteres
+                                </div>
                             </div>
-                            <button type="submit" class="btn btn-primary w-100">Enviar Mensaje</button>
+                            
+                            <button type="submit" class="btn btn-primary w-100" id="btnEnviarContacto">
+                                📧 Enviar Mensaje
+                            </button>
                         </form>
                     </div>
                 </div>
@@ -367,8 +467,6 @@
                 </div>
             </div>
         </section>
-
-    </main>
 
     <!-- ======================================== -->
     <!-- 5. ASIDE                                -->
